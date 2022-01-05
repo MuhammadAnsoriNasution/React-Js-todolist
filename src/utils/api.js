@@ -1,0 +1,1 @@
+export const api = 'https://virtserver.swaggerhub.com/hanabyan/todo/1.0.0'
