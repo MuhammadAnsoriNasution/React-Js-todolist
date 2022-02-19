@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
 
-export default function TableComp({data, handleDelete, handleShowForm}) {
+export default function TableComp({ data, handleDelete, handleShowForm }) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -39,9 +39,8 @@ export default function TableComp({data, handleDelete, handleShowForm}) {
               <TableCell >{row.status ? '-' : 'Ya'}</TableCell>
               <TableCell >{row.status ? 'Ya' : '-'}</TableCell>
               <TableCell >
-                  {row.createdAt}
+                {row.createdAt}
               </TableCell>
-
             </TableRow>
           ))}
         </TableBody>

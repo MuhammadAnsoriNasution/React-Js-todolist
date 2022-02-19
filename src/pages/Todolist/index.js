@@ -7,7 +7,7 @@ import FormDialog from './Dialog';
 import Table from './Table'
 function Home() {
   const dispatch = useDispatch()
-  const {data} = useSelector(state => state.todolist)
+  const { data } = useSelector(state => state.todolist)
   const [open, setOpen] = useState(false);
   const [datanew, setNew] = useState(false)
   let dataDefault = {
@@ -30,12 +30,12 @@ function Home() {
   };
 
   const handleSave = () => {
-    if (initialValue.id > 0){
+    if (initialValue.id > 0) {
       dispatch(updateData(initialValue, cbSuccess))
-    }else{
+    } else {
       dispatch(createData(initialValue, cbSuccess))
     }
-    
+
   }
   const cbSuccess = (status, message) => {
     handleClose()
@@ -55,43 +55,43 @@ function Home() {
   }
 
   const handleDelete = (data) => {
-    
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          dispatch(deleteData(data.id))
-        }
-      })
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteData(data.id))
+      }
+    })
     handleClose()
   }
   useEffect(() => {
     dispatch(getData())
-  },[])
+  }, [])
 
   return (
     <div className="m-5">
-        <div  className='mb-2'>
-        <Button  variant="contained" onClick={() => handleClickOpenCreate()}>Create new data</Button>
+      <div className='mb-2'>
+        <Button variant="contained" onClick={() => handleClickOpenCreate()}>Create new data</Button>
         {
-          open && <FormDialog 
-                    handleClose={() => handleClose()} 
-                    open={open} 
-                    initialValue={initialValue} 
-                    setInitialValue={setInitialValue} 
-                    handleSave={() => handleSave()}
-                    datanew={datanew}
-                    handleDelete={(data) => handleDelete(data)}
-                  />
-        } 
-        </div>
-      <Table data={data} handleDelete={handleDelete} handleShowForm={handleShowForm}/>
+          open && <FormDialog
+            handleClose={() => handleClose()}
+            open={open}
+            initialValue={initialValue}
+            setInitialValue={setInitialValue}
+            handleSave={() => handleSave()}
+            datanew={datanew}
+            handleDelete={(data) => handleDelete(data)}
+          />
+        }
+      </div>
+      <Table data={data} handleDelete={handleDelete} handleShowForm={handleShowForm} />
     </div>
   );
 }

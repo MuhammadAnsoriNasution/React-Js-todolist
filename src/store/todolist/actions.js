@@ -18,20 +18,22 @@ export function getData() {
 export function createData(data, cb) {
     return async (dispatch, getState) => {
         let dataReducer = await getState().todolist.data
-        const max = dataReducer.reduce(function(prev, current) {
+        const max = dataReducer.reduce(function (prev, current) {
             return (prev.id > current.id) ? prev.id : current.id
-        })
-        var currentdate = new Date(); 
-        var date = (currentdate.getDate()+1) < 10 ? '0'+(currentdate.getDate()+1)+' ' : (currentdate.getDate()+1)  + " " ;
-        var hour = (currentdate.getHours()+1) < 10 ? '0'+(currentdate.getHours()+1)+':' : (currentdate.getHours()+1)  + ":" 
-        var month = (currentdate.getMonth()+1) < 10 ? '0'+(currentdate.getMonth()+1)+'-' : (currentdate.getMonth()+1)  + "-" 
+        }, 0)
+        console.log(max)
+        console.log(dataReducer)
+        var currentdate = new Date();
+        var date = (currentdate.getDate() + 1) < 10 ? '0' + (currentdate.getDate() + 1) + ' ' : (currentdate.getDate() + 1) + " ";
+        var hour = (currentdate.getHours() + 1) < 10 ? '0' + (currentdate.getHours() + 1) + ':' : (currentdate.getHours() + 1) + ":"
+        var month = (currentdate.getMonth() + 1) < 10 ? '0' + (currentdate.getMonth() + 1) + '-' : (currentdate.getMonth() + 1) + "-"
         var datetime = currentdate.getFullYear() + "-"
-                + month
-                + date
-                + hour
-                + currentdate.getMinutes()
+            + month
+            + date
+            + hour
+            + currentdate.getMinutes()
 
-        dispatch({ type: CREATE_DATA, payload: {...data, id: max > 1 ? max + 1 : 1, createdAt: datetime } })
+        dispatch({ type: CREATE_DATA, payload: { ...data, id: max > 0 ? max + 1 : 1, createdAt: datetime } })
         cb(true, 'Created')
 
     };

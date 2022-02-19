@@ -7,10 +7,10 @@ import * as React from 'react';
 import Detail from './Detail';
 import Form from './Form';
 
-export default function FormDialog({ handleClose, open, initialValue, setInitialValue, handleSave, datanew, handleDelete}) {
+export default function FormDialog({ handleClose, open, initialValue, setInitialValue, handleSave, datanew, handleDelete }) {
   const [detail, setDetail] = React.useState(true)
   React.useEffect(() => {
-    if (datanew){
+    if (datanew) {
       setDetail(false)
     }
   }, [])
