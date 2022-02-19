@@ -71,9 +71,9 @@ function Home() {
     })
     handleClose()
   }
-  useEffect(() => {
-    dispatch(getData())
-  }, [])
+  // useEffect(() => {
+  //   dispatch(getData())
+  // }, [])
 
   return (
     <div className="m-5">
